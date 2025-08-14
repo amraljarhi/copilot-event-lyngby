@@ -5,6 +5,27 @@
   <title>GitHub Copilot Event – Microsoft Lyngby</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="GitHub Copilot Event – Microsoft Lyngby. Explore AI-powered developer productivity, live demos, strategy, and adoption insights." />
+
+  <!-- Open Graph / Social Preview (update the image URL to a real hosted image, 1200x630) -->
+  <meta property="og:title" content="GitHub Copilot Event – Microsoft Lyngby">
+  <meta property="og:description" content="Focused, hands-on exploration of AI-powered developer productivity: vision, live demos, strategy, adoption & networking.">
+  <meta property="og:image" content="https://amraljarhi.github.io/copilot-event-lyngby/hero-social.png">
+  <meta property="og:image:alt" content="GitHub Copilot Event – Microsoft Lyngby">
+  <meta property="og:url" content="https://gh.io/AAxeuh4">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GitHub Copilot Event">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GitHub Copilot Event – Microsoft Lyngby">
+  <meta name="twitter:description" content="Focused, hands-on exploration of AI-powered developer productivity: vision, demos, strategy, adoption & networking.">
+  <meta name="twitter:image" content="https://amraljarhi.github.io/copilot-event-lyngby/hero-social.png">
+
+  <!-- Optional theme color -->
+  <meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+
+  <link rel="canonical" href="https://gh.io/AAxeuh4" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -78,11 +99,13 @@
 
     /******************************************************************
      * HERO
+     * Light mode uses decorative SVG background image hero-bg-light.svg
      ******************************************************************/
     .hero-bg {
       position:relative;
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.6) 0%, rgba(246,248,250,0.9) 70%, var(--bg) 100%);
+        linear-gradient(180deg, rgba(255,255,255,0.6) 0%, rgba(246,248,250,0.9) 70%, var(--bg) 100%),
+        url('hero-bg-light.svg') center/cover no-repeat;
     }
     .hero-bg:after {
       content:"";
@@ -191,17 +214,15 @@
     footer { text-align:center; padding:60px 30px 80px; font-size:clamp(0.7rem,1.4vw,0.85rem); color:#5f6770; }
 
     /******************************************************************
-     * LIGHT THEME HERO EVENT FLOW CARD
+     * LIGHT THEME EVENT FLOW CARD
      ******************************************************************/
     .event-flow-card-gradient {
       background:linear-gradient(135deg,#ffffff 0%,#f3f4f7 100%);
     }
 
     /******************************************************************
-     * DARK MODE
-     * - All “bubbles” become DARK, subtle low-luminance gradients instead of pale wash.
-     * - All cards unified to dark surfaces for consistent contrast.
-     * - White cards removed in dark to avoid washed out light text.
+     * DARK MODE OVERRIDES
+     * Removes the light SVG background (keeps it ONLY for light mode)
      ******************************************************************/
     @media (prefers-color-scheme: dark){
       :root {
@@ -219,9 +240,6 @@
         --text-strong: #f5f7fa;
         --muted: #a4b1c2;
         --muted-soft: #8c98a6;
-        --bubble-dark-1: #1d2632;
-        --bubble-dark-2: #222e3b;
-        --bubble-dark-3: #273444;
         --shadow: 0 2px 4px rgba(0,0,0,.45), 0 4px 14px -4px rgba(0,0,0,.6);
         --shadow-strong: 0 8px 26px -6px rgba(0,0,0,0.7);
         --outline-focus: #3b82f6;
@@ -232,7 +250,6 @@
         color: var(--text);
       }
 
-      /* NAV */
       .top-nav {
         background: rgba(13,17,23,0.85);
         backdrop-filter: blur(14px);
@@ -245,11 +262,11 @@
       .nav-toggle span:before,
       .nav-toggle span:after { background:var(--text); }
 
-      /* HERO BACKGROUND WITH DARK BUBBLES */
+      /* DARK HERO: remove image (no hero-bg-light.svg), use dark bubbles */
       .hero-bg {
         background:
-          radial-gradient(circle at 18% 22%, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 58%),
-          radial-gradient(circle at 78% 68%, rgba(159,123,255,0.10) 0%, rgba(159,123,255,0) 60%),
+          radial-gradient(circle at 18% 22%, rgba(159,123,255,0.08) 0%, rgba(159,123,255,0) 55%),
+          radial-gradient(circle at 78% 68%, rgba(78,108,212,0.10) 0%, rgba(78,108,212,0) 60%),
           linear-gradient(180deg,#0e141a 0%, #0d1117 100%);
       }
       .hero-bg:after {
@@ -262,6 +279,7 @@
         -webkit-background-clip:initial;
       }
       .hero-left p.lede { color:var(--muted); }
+
       .info-grid {
         background: var(--surface-raised);
         border:1px solid var(--border-subtle);
@@ -276,7 +294,6 @@
       }
       .register-hero:hover { background:linear-gradient(135deg,#b28eff 0%, #8b6bff 95%); }
 
-      /* GENERIC CARDS */
       .card-block,
       .agenda-item,
       .demo-list li,
@@ -290,7 +307,6 @@
         color: var(--text);
       }
 
-      /* DARK BUBBLES: subtle low-luminance gradients layered */
       .card-block:before,
       .agenda-item:before,
       .speaker-card:before {
@@ -302,21 +318,15 @@
           radial-gradient(circle at 88% 78%, rgba(78,108,212,0.08) 0%, rgba(78,108,212,0) 60%),
           radial-gradient(circle at -6% 110%, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0) 70%);
         pointer-events:none;
-        mix-blend-mode:normal;
       }
 
-      /* Override light gradient inside event flow card */
       .event-flow-card-gradient { background:var(--surface-raised); }
 
-      /* Headings inside cards */
       .card-block h2,
       .section-heading,
       .location-title { color:var(--text-strong); }
 
-      /* Agenda specifics */
-      .agenda-item {
-        background: var(--surface-raised);
-      }
+      .agenda-item { background: var(--surface-raised); }
       .agenda-icon {
         background: linear-gradient(145deg,#202b37,#1d2632);
         box-shadow:0 2px 4px rgba(0,0,0,.55), 0 0 0 1px #2a333d;
@@ -326,19 +336,15 @@
       .agenda-segment { color: var(--muted-soft); }
       .agenda-desc { color: var(--muted); }
 
-      /* Demo list */
       .demo-list li {
         background: #1e2732;
       }
       .demo-list li span { color:var(--text-strong); }
-      .demo-list li { color:var(--text); }
 
-      /* Location */
       .location-map { background:#0d1117; border:1px solid var(--border-subtle); }
       .location-address a { color:var(--brand); }
       .location-address span { color:var(--muted); }
 
-      /* Speakers */
       .speaker-card {
         background:var(--surface-raised);
         color:var(--text);
@@ -347,27 +353,20 @@
       .speaker-role { color:var(--brand); }
       .speaker-bio { color:var(--muted); }
 
-      /* Buttons inline / nav */
       .register-small {
         background:linear-gradient(145deg,#8d6dff,#6a4af6);
         box-shadow:0 4px 16px -4px rgba(130,97,255,0.55);
       }
       .register-small:hover { background:linear-gradient(145deg,#b18dff,#8b6bff); }
 
-      /* Links */
       a { color: var(--brand); }
       a:hover { color: var(--brand-hover); }
 
-      /* Footer */
       footer {
         background:#0d1117;
         color:#6d7782;
       }
 
-      /* Remove any residual light theme inline gradient backgrounds */
-      .event-flow-card-gradient { background:var(--surface-raised); }
-
-      /* Strengthen list strong elements */
       strong, b { color: var(--text-strong); }
     }
 
@@ -414,7 +413,7 @@
             Discover how GitHub Copilot and the GitHub platform accelerate innovation, improve quality,
             and transform the way engineering teams build and deliver software.
           </p>
-            <a href="register.html" class="register-hero">Register Now</a>
+          <a href="register.html" class="register-hero">Register Now</a>
         </div>
         <div class="hero-right">
           <div class="info-grid">
@@ -453,21 +452,21 @@
       <div class="cards-wrapper">
         <div class="card-block event-flow-card-gradient">
           <h2>Event Flow</h2>
-          <div class="split-2">
-            <div>
-              <ul style="padding-left:18px; margin:0; line-height:1.55; font-weight:500; font-size:0.9rem;">
-                <li><strong>Doors Open:</strong> 12:30 PM</li>
-                <li><strong>Event Start:</strong> 1:00 PM</li>
-                <li><strong>Sessions:</strong> 1:00 PM – 4:00 PM</li>
-                <li><strong>Networking &amp; Refreshments:</strong> 4:00 PM – 5:00 PM</li>
-              </ul>
+            <div class="split-2">
+              <div>
+                <ul style="padding-left:18px; margin:0; line-height:1.55; font-weight:500; font-size:0.9rem;">
+                  <li><strong>Doors Open:</strong> 12:30 PM</li>
+                  <li><strong>Event Start:</strong> 1:00 PM</li>
+                  <li><strong>Sessions:</strong> 1:00 PM – 4:00 PM</li>
+                  <li><strong>Networking &amp; Refreshments:</strong> 4:00 PM – 5:00 PM</li>
+                </ul>
+              </div>
+              <div style="font-size:0.9rem; line-height:1.5; font-weight:500; color:var(--muted);">
+                We’ll move from strategic context to hands-on exploration—showcasing how AI
+                is already reshaping developer workflows—then wrap with practical adoption
+                approaches and an open discussion.
+              </div>
             </div>
-            <div style="font-size:0.9rem; line-height:1.5; font-weight:500; color:var(--muted);">
-              We’ll move from strategic context to hands-on exploration—showcasing how AI
-              is already reshaping developer workflows—then wrap with practical adoption
-              approaches and an open discussion.
-            </div>
-          </div>
         </div>
       </div>
     </section>
