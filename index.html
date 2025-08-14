@@ -167,21 +167,192 @@
 
     footer { text-align:center; padding:60px 30px 80px; font-size:clamp(0.7rem,1.4vw,0.85rem); color:#5f6770; }
 
-    /* Dark mode unchanged */
-    @media (prefers-color-scheme: dark){
-      :root { --bg:#0d1117; --card-bg:#161b22; --text:#e6edf3; --muted:#8b949e;
-        --shadow:0 2px 8px rgba(0,0,0,.6); --shadow-strong:0 4px 18px -6px rgba(0,0,0,.85); }
-      .top-nav { background:rgba(13,17,23,0.85); border-bottom-color:#30363d; }
-      .nav-links a { color:var(--text); }
-      .nav-links a.active { outline-color:#1f6feb; }
-      .card-block, .info-grid, .speaker-card, .location-map { border:1px solid #30363d; }
-      .demo-list li { background:#1f242c; }
-      .agenda-item { background:#1f242c; border-color:#30363d; }
-      .agenda-item:before { background:radial-gradient(circle at 12% 18%, rgba(130,87,229,0.25), transparent 60%); }
-      .speaker-bio { color:#adb5bd; }
-      footer { color:#768390; }
-      .nav-toggle span, .nav-toggle span:before, .nav-toggle span:after { background:#e6edf3; }
-    }
+   /* === Dark Mode Enhancements (auto) === */
+@media (prefers-color-scheme: dark){
+  :root {
+    /* Surface & text tokens */
+    --bg: #0d1117;
+    --bg-alt: #111823;
+    --card: #161b22;
+    --card-alt: #1d2632;
+    --border-subtle: #30363d;
+    --border-strong: #3d444d;
+    --text: #e6edf3;
+    --text-muted: #a4b1c2;
+    --text-faint: #6b7280;
+    --brand: #9f7bff;                /* slightly lighter for contrast on dark */
+    --brand-hover: #b18dff;
+    --brand-fade: rgba(159,123,255,0.18);
+    --focus-ring: #3b82f6;
+    --shadow: 0 2px 4px rgba(0,0,0,.55), 0 4px 14px -2px rgba(0,0,0,.6);
+    --shadow-strong: 0 6px 22px -4px rgba(0,0,0,.75);
+    --radius-l: 18px;
+  }
+
+  body {
+    background: linear-gradient(140deg,#0d1117 0%, #0f1520 65%, #111b28 100%);
+    color: var(--text);
+  }
+
+  /* Navigation */
+  .top-nav {
+    background: rgba(13,17,23,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .brand, .nav-links a {
+    color: var(--text);
+  }
+  .nav-links a:hover {
+    color: var(--brand);
+  }
+  .nav-links a.active {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+  .nav-toggle span,
+  .nav-toggle span:before,
+  .nav-toggle span:after {
+    background: var(--text);
+  }
+
+  /* Hero */
+  .hero,
+  .hero-register,
+  .hero-section {
+    position: relative;
+    background: radial-gradient(circle at 25% 30%, rgba(159,123,255,0.14) 0%, rgba(159,123,255,0) 52%),
+                radial-gradient(circle at 78% 68%, rgba(72,149,255,0.15) 0%, rgba(72,149,255,0) 55%);
+  }
+  .hero h1,
+  .hero-register h1 {
+    color: #f0f4f8;
+    background: linear-gradient(94deg,#f5f7fa 0%, #d9e2ec 45%, #b9c5d2 100%);
+    -webkit-background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.35));
+  }
+  .lede {
+    color: var(--text-muted);
+  }
+
+  /* Call-to-action button */
+  .register-small,
+  .hero a.cta-button,
+  .primary-btn,
+  .hero .cta {
+    background: linear-gradient(135deg,#8d6dff 0%, #7a5af8 45%, #6a4af6 100%);
+    color: #fff;
+    box-shadow: 0 4px 14px -2px rgba(140,108,255,0.55), 0 2px 3px rgba(0,0,0,0.4);
+  }
+  .register-small:hover,
+  .hero a.cta-button:hover,
+  .primary-btn:hover,
+  .hero .cta:hover {
+    background: linear-gradient(135deg,#b090ff 0%, #9a7dff 40%, #8b6bff 100%);
+    text-decoration: none;
+    transform: translateY(-2px);
+  }
+
+  /* Cards / sections */
+  .form-shell,
+  .card,
+  .info-card,
+  .agenda-item,
+  .speaker-card {
+    background: var(--card);
+    border: 1px solid var(--border-subtle);
+    color: var(--text);
+    box-shadow: var(--shadow);
+  }
+  .card + .card {
+    border-top: 1px solid var(--border-subtle);
+  }
+  .speaker-card h3,
+  .speaker-card .name {
+    color: #ffffff;
+  }
+  .speaker-card p {
+    color: var(--text-muted);
+  }
+
+  /* Subtle gradient ring behind circular images (if any) */
+  .avatar-ring,
+  .speaker-card .avatar-wrapper {
+    background: radial-gradient(circle at 50% 38%, var(--brand-fade) 0%, rgba(159,123,255,0) 75%);
+  }
+
+  /* Lists */
+  ul, ol {
+    color: var(--text-muted);
+  }
+
+  /* Dividers */
+  hr, .divider {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-subtle), transparent);
+  }
+
+  /* Links */
+  a:not(.primary-btn):not(.register-small) {
+    color: var(--brand);
+  }
+  a:not(.primary-btn):not(.register-small):hover {
+    color: var(--brand-hover);
+  }
+
+  /* Forms / inputs (if present) */
+  input, textarea, select {
+    background: #1e2732;
+    border: 1px solid var(--border-subtle);
+    color: var(--text);
+  }
+  input:focus, textarea:focus, select:focus {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+    border-color: var(--focus-ring);
+  }
+
+  /* Shadows compensation (reduce glare) */
+  .form-embed-outer {
+    background: var(--card-alt);
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 3px 20px -6px rgba(0,0,0,.7);
+  }
+
+  /* Footer */
+  footer {
+    background: #0d1117;
+    color: var(--text-faint);
+  }
+
+  /* Subtle animation optional */
+  .hero h1 {
+    animation: fadeUp .7s ease .05s both;
+  }
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(14px); }
+    to { opacity:1; transform: translateY(0); }
+  }
+}
+
+/* Optional manual toggle support (add class .force-dark / .force-light on <html> to override) */
+html.force-dark {
+  color-scheme: dark;
+}
+html.force-light {
+  color-scheme: light;
+}
+html.force-dark body {
+  background: linear-gradient(140deg,#0d1117 0%, #0f1520 65%, #111b28 100%);
+}
+
+/* If you want the hero heading NOT gradient in dark, uncomment:
+@media (prefers-color-scheme: dark){
+  .hero h1, .hero-register h1 { background:none; color:#f2f5f8; }
+}
+*/
   </style>
 </head>
 <body>
