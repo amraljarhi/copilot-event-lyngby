@@ -228,18 +228,31 @@
     © 2025 GitHub Copilot Event – Microsoft Lyngby. All rights reserved.
   </footer>
   <script>
-    // Show thank you message after successful submission
+    // Actually submit the form to Formspree, then show thank you
     document.getElementById('contactForm').addEventListener('submit', function(e){
       e.preventDefault();
       if(!document.getElementById('consent').checked) {
         alert('Please provide consent to be contacted.');
         return;
       }
-      document.getElementById('form-section').style.display = 'none';
-      document.getElementById('thankyou').style.display = 'block';
-      // To actually send the email, uncomment the two JS lines below:
-      // const form = this;
-      // form.submit();
+      const form = this;
+      const data = new FormData(form);
+      fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          document.getElementById('form-section').style.display = 'none';
+          document.getElementById('thankyou').style.display = 'block';
+        } else {
+          alert('There was a problem submitting your form. Please try again.');
+        }
+      }).catch(() => {
+        alert('There was a problem submitting your form. Please try again.');
+      });
     });
   </script>
 </body>
