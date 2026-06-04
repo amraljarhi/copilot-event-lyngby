@@ -90,8 +90,11 @@
     .kicker { position: absolute; top: 1.4rem; left: clamp(2rem,6vw,6rem); font-size: .8rem; color: var(--muted); letter-spacing: .08em; }
 
     @media print {
-      .deck { height: auto; overflow: visible; }
-      .slide { min-height: 100vh; page-break-after: always; }
+      @page { size: 1280px 720px; margin: 0; }
+      html, body { height: auto; background: var(--bg); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .deck { height: auto; overflow: visible; scroll-snap-type: none; }
+      .slide { min-height: 720px; height: 720px; page-break-after: always; break-after: page; border-bottom: 0; }
+      .slide:last-child { page-break-after: auto; }
     }
   </style>
 </head>
